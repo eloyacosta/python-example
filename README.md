@@ -23,7 +23,7 @@
 
      ``$ python python-example/app.py``
      
-     This will make the app listening the port 5000. Keep the shell running.
+     This will make python to keep running and listening on port 5000.
 
 # Some request testing
 
@@ -42,4 +42,4 @@
   All the app tests has been written with [Unittest](https://docs.python.org/2/library/unittest.html).
   To run the tests, be sure you are in the project directory (i.e: ~/git/python/example) and exec:
 
-     ``$ python test.py``
+  ``$ python test.py``
