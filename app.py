@@ -20,7 +20,7 @@ def validate(elem):
 	try:
 		recv_checksum = elem['md5checksum']
 	except (KeyError, NameError, TypeError, RuntimeError) as e:
-		#app.logger.debug('ERROR Value for key: %s, while trying to get checksum info for: %s' % (e,json.dumps(elem)) )
+		app.logger.debug('ERROR Value for key: %s, while trying to get checksum info for: %s' % (e,json.dumps(elem)) )
 		return False
 
 	#delete the md5 key-value from the received elem 
@@ -34,19 +34,19 @@ def validate(elem):
 		try:
 			elem['uid'] = int(elem['uid'])
 		except (ValueError) as e:
-		    #app.logger.debug('ERROR: Value error: %s , for the uid: %s' % (e,elem['uid']) )
+		    app.logger.debug('ERROR: Value error: %s , for the uid: %s' % (e,elem['uid']) )
 		    return False
 		except (BaseException) as e:
-			#app.logger.debug('ERROR: %s , for the uid: %s' % (e,elem['uid']) )
+			app.logger.debug('ERROR: %s , for the uid: %s' % (e,elem['uid']) )
 			return False
 		# Now the date
 		try:
 			elem['date'] = parser.parse(elem['date'])
 		except (ValueError) as e:
-			#app.logger.debug('ERROR:Value error: %s , for the date: %s' % (elem['date']) )
+			app.logger.debug('ERROR:Value error: %s , for the date: %s' % (elem['date']) )
 			return False
 		except (BaseException) as e:
-			#app.logger.debug('ERROR: %s , for the date: %s' % (e,elem['date']) )
+			app.logger.debug('ERROR: %s , for the date: %s' % (e,elem['date']) )
 			return False
 		#All the checks passed and return the element 
 		return elem
@@ -134,6 +134,6 @@ def mongo_query():
 	return jsonify(success='true', uid=uid , date=dateparam , count=result.count())
 
 if __name__ == '__main__':
-	app.debug = False
+	#WARNING, set debug to false for production proposes.
+	app.debug = True
 	app.run()
-
